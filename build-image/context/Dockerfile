@@ -1,3 +1,6 @@
-FROM ubuntu:24.04
+FROM node:24-alpine
 
-CMD ["echo", "Hello world"]
+WORKDIR /app
+COPY ./hello.js .
+
+CMD ["node", "hello.js"]

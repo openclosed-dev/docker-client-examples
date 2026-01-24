@@ -15,7 +15,13 @@ import (
 )
 
 func main() {
-	err := buildImage("build-image:latest")
+
+	imageName := os.Getenv("IMAGE_NAME")
+	if imageName == "" {
+		imageName = "hello-node:latest"
+	}
+
+	err := buildImage(imageName)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "Error:", err)
 	}
