@@ -1,4 +1,5 @@
 .vscode/
 build-image/build-image
 list-images/list-images
+push-image/push-image
 .env

@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"context"
-	"fmt"
 	"log/slog"
 	"os"
 
@@ -11,19 +10,23 @@ import (
 	"github.com/docker/docker/api/types/filters"
 	"github.com/docker/docker/api/types/image"
 	"github.com/docker/docker/client"
+	"github.com/joho/godotenv"
 	"github.com/moby/go-archive"
 )
 
 func main() {
 
-	imageName := os.Getenv("IMAGE_NAME")
-	if imageName == "" {
-		imageName = "hello-node:latest"
+	err := godotenv.Load()
+	if err != nil {
+		slog.Error(err.Error())
+		os.Exit(1)
 	}
 
-	err := buildImage(imageName)
+	imageName := os.Getenv("IMAGE_NAME")
+
+	err = buildImage(imageName)
 	if err != nil {
-		fmt.Fprintln(os.Stderr, "Error:", err)
+		slog.Error(err.Error())
 	}
 }
 
@@ -62,7 +65,7 @@ func buildImage(imageName string) error {
 	scanner := bufio.NewScanner(res.Body)
 	for scanner.Scan() {
 		line := scanner.Text()
-		fmt.Println(line)
+		slog.Info(line)
 	}
 
 	return nil
