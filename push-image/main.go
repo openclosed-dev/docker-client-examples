@@ -5,24 +5,23 @@ import (
 	"context"
 	"encoding/base64"
 	"encoding/json"
+	"fmt"
 	"log/slog"
 	"os"
 
 	"github.com/docker/docker/api/types/image"
 	"github.com/docker/docker/api/types/registry"
 	"github.com/docker/docker/client"
-	"github.com/joho/godotenv"
 )
 
 func main() {
 
-	err := godotenv.Load()
-	if err != nil {
-		slog.Error(err.Error())
-		os.Exit(1)
+	if len(os.Args) < 2 {
+		fmt.Println("Usage: build-image <image name>")
+		return
 	}
 
-	imageName := os.Getenv("IMAGE_NAME")
+	imageName := os.Args[1]
 	username := os.Getenv("REGISTRY_USERNAME")
 	password := os.Getenv("REGISTRY_PASSWORD")
 

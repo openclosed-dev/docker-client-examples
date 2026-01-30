@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"context"
+	"fmt"
 	"log/slog"
 	"os"
 
@@ -10,21 +11,19 @@ import (
 	"github.com/docker/docker/api/types/filters"
 	"github.com/docker/docker/api/types/image"
 	"github.com/docker/docker/client"
-	"github.com/joho/godotenv"
 	"github.com/moby/go-archive"
 )
 
 func main() {
 
-	err := godotenv.Load()
-	if err != nil {
-		slog.Error(err.Error())
-		os.Exit(1)
+	if len(os.Args) < 2 {
+		fmt.Println("Usage: build-image <image name>")
+		return
 	}
 
-	imageName := os.Getenv("IMAGE_NAME")
+	imageName := os.Args[1]
 
-	err = buildImage(imageName)
+	err := buildImage(imageName)
 	if err != nil {
 		slog.Error(err.Error())
 	}

@@ -2,10 +2,7 @@ module push-image
 
 go 1.25.6
 
-require (
-	github.com/docker/docker v28.5.2+incompatible
-	github.com/joho/godotenv v1.5.1
-)
+require github.com/docker/docker v28.5.2+incompatible
 
 require (
 	github.com/Microsoft/go-winio v0.6.2 // indirect

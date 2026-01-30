@@ -4,7 +4,6 @@ go 1.25.6
 
 require (
 	github.com/docker/docker v28.5.2+incompatible
-	github.com/joho/godotenv v1.5.1
 	github.com/moby/go-archive v0.2.0
 )
 
