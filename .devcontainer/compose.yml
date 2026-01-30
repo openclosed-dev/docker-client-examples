@@ -1,0 +1,17 @@
+services:
+  devcontainer:
+    build:
+      context: .
+      args:
+        - USERNAME=${USER:?err}
+        - DOCKER_GID=${DOCKER_GID:?err}
+    command: sleep infinity
+    volumes:
+      - type: bind
+        source: ../
+        target: /workspaces/docker-client-examples
+        consistency: cached
+      # Docker-outside-of-Docker
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
