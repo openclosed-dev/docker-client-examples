@@ -17,6 +17,6 @@
   },
   "remoteUser": "${localEnv:USER}",
   "initializeCommand": [
-    ".devcontainer/initialize.sh"
+    "${localWorkspaceFolder}/.devcontainer/initialize.sh"
   ]
 }
