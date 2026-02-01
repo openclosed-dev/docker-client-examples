@@ -15,5 +15,8 @@
       ]
     }
   },
-  "remoteUser": "${localEnv:USER}"
+  "remoteUser": "${localEnv:USER}",
+  "initializeCommand": [
+    ".devcontainer/initialize.sh"
+  ]
 }

@@ -5,9 +5,8 @@ services:
       args:
         - USERNAME=${USER:?err}
         - DOCKER_GID=${DOCKER_GID:?err}
-    environment:
-      - REGISTRY_USERNAME
-      - REGISTRY_PASSWORD
+    env_file:
+      - secrets.env
     command: sleep infinity
     volumes:
       - type: bind
